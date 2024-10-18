@@ -18,7 +18,8 @@ export class Customer {
     @Column({name: 'phone_Number', type: 'varchar', length:50})
     phoneNumber: string;
 
-    @ManyToOne(() => Address, (address) => address.customer)
+
+    @ManyToOne(() => Address, (address) => address.customers)
     @JoinColumn({name: 'address_id'})
     address!: Address;
 

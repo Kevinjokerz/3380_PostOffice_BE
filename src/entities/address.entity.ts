@@ -20,6 +20,6 @@ export class Address {
     zipCode!: number;
 
     @OneToMany(() => Customer, (customer) => customer.address)
-    customer!: Customer[];
+    customers!: Customer[];
 
 }

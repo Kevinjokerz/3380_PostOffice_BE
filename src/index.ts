@@ -6,11 +6,7 @@ import { error } from 'console';
 
 const start = async () => {
     await AppDataSource.initialize()
-    .then(() => {
-        console.log('Database connection initialized successfully');
-    })
-    .catch((error) => console.log(error))
-
+    console.log('Database connection initialized successfully');
     app.listen(process.env.PORT || 3000, () => {console.log("app start")})
 }
 

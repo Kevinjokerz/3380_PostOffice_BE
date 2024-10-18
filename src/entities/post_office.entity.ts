@@ -17,6 +17,9 @@ export class PostOffice {
     @Column({name: 'phone_Number', type: 'varchar', length:50})
     phoneNumber!: string;
 
+    @Column({name: "post_office_address_id", type: "int", nullable: true})
+    poAddress!: number;
+
     @OneToOne(() => Address)
     @JoinColumn({name: 'post_office_address_id'})
     address!: Address;

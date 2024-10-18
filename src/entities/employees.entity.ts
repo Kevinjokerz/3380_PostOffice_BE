@@ -1,6 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from "typeorm";
-import { Address } from "./address.entity";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { PostOffice } from "./post_office.entity";
+import { Dependent } from "./dependent.entity";
 
 
 @Entity('Employees')
@@ -14,7 +14,7 @@ export class Employees {
     @Column({name: 'last_name', type: 'varchar', length:50})
     lastName!: string;
 
-    @Column({name: 'date_of_birth', type: 'date'})
+    @Column({name: 'dob', type: 'date'})
     DOB!: Date;
 
     @Column({name: 'email', type: 'varchar', length:50})
@@ -24,13 +24,29 @@ export class Employees {
     phoneNumber!: string;
 
     @Column({name: 'position', type: 'varchar', length:50})
-    position!: string
+    position!: string;
+
+    @Column({ name: 'branch_id', type: 'int', nullable: true })
+    branchId!: number;
+
+    @Column({name: "manager_id", type: "int", nullable: true})
+    managerId!: number;
 
     @ManyToOne(() => PostOffice, (postOffice) => postOffice.employees)
     @JoinColumn({name: 'branch_id'})
-    postOffice: PostOffice
+    postOffice!: PostOffice;
+
 
     @ManyToOne(() => Employees)
     @JoinColumn({name: 'manager_id'})
-    managerID!: Employees;
+    managerID?: Employees | null;
+
+    @OneToMany(() => Dependent, (dependents) => dependents.employee)
+    dependents?: Dependent[] | null;
+
+    @CreateDateColumn({ name: 'created_at' })
+    createdAt!: Date;
+  
+    @UpdateDateColumn({ name: 'updated_at' })
+    updatedAt!: Date;
 }

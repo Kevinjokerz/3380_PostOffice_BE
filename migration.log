@@ -1,0 +1,11 @@
+${timestamp) [${level.toUpperCase()}]: ${message}
+${timestamp) [${level.toUpperCase()}]: ${message}
+${timestamp) [${level.toUpperCase()}]: ${message}
+2024-10-16 18:54:13 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Customer: password column removed. 
+2024-10-16 18:54:13 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Employees: password column added. 
+2024-10-16 18:57:06 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Customer: password column added. 
+2024-10-16 18:57:07 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Employees: password column added. 
+2024-10-16 18:58:01 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Customer: password column removed. 
+2024-10-16 18:58:01 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Employees: password column remove. 
+2024-10-16 18:58:28 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Customer: password column added. 
+2024-10-16 18:58:29 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Employees: password column added. 

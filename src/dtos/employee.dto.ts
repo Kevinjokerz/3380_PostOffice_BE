@@ -10,6 +10,11 @@ interface CreateEmployeeDTO {
     managerId: number;
 }
 
+interface EmployeeLoginDTO {
+    email: string;
+    password: string;
+}
 
 
-export{ CreateEmployeeDTO };
+
+export{ CreateEmployeeDTO, EmployeeLoginDTO };

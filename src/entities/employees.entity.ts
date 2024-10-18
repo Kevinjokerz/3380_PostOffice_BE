@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { PostOffice } from "./post_office.entity";
 import { Dependent } from "./dependent.entity";
+import { kMaxLength } from "buffer";
 
 
 @Entity('Employees')
@@ -31,6 +32,9 @@ export class Employees {
 
     @Column({name: "manager_id", type: "int", nullable: true})
     managerId!: number;
+
+    @Column({ name: 'password', type: 'varchar', length: 255 })
+    password!: string;
 
     @ManyToOne(() => PostOffice, (postOffice) => postOffice.employees)
     @JoinColumn({name: 'branch_id'})

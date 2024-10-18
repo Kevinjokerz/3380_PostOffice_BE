@@ -60,6 +60,12 @@ export class CreateEmployeesTable1729213149606 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
+                        name: "password",
+                        type: "varchar",
+                        length: "255",
+                        isNullable: false,
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",

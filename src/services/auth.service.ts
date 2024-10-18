@@ -32,7 +32,10 @@ class AuthService {
         }
 
         const hashPassword = await bcrypt.hash(dto.password, 10);
-        const newEmployee = await this.employeeRepository.create(dto);
+        const newEmployee = await this.employeeRepository.create({
+            ...dto,
+            password: hashPassword
+        });
         await this.employeeRepository.save(newEmployee);
 
         return newEmployee;

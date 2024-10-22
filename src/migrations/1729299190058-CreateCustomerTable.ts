@@ -2,15 +2,15 @@ import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm
 import logger from '../utils/logger';
 
 
-export class CreateEmployeesTable1729213149606 implements MigrationInterface {
+export class CreateCustomerTable1729299190058 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "employees",
+                name: "customers",
                 columns: [
                     {
-                        name: "employee_id",
+                        name: "customer_id",
                         type: "int",
                         isPrimary: true,
                         isGenerated: true,
@@ -29,11 +29,6 @@ export class CreateEmployeesTable1729213149606 implements MigrationInterface {
                         isNullable: false
                     },
                     {
-                        name: "dob",
-                        type: "Date",
-                        isNullable: false,
-                    },
-                    {
                         name: "email",
                         type: "varchar",
                         length: "50",
@@ -44,22 +39,6 @@ export class CreateEmployeesTable1729213149606 implements MigrationInterface {
                         type: "varchar",
                         length: "15",
                         isNullable: false
-                    },
-                    {
-                        name: "position",
-                        type: "varchar",
-                        length: "50",
-                        isNullable: false,
-                    },
-                    {
-                        name: "branch_id",
-                        type: "int",
-                        isNullable: false,
-                    },
-                    {
-                        name: "manager_id",
-                        type: "int",
-                        isNullable:true,
                     },
                     {
                         name: "password",
@@ -77,52 +56,42 @@ export class CreateEmployeesTable1729213149606 implements MigrationInterface {
                         name: "updated_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",
+                        onUpdate: "CURRENT_TIMESTAMP",
                         isNullable: false
+                    },
+                    {
+                        name: "address_id",
+                        type: "int",
+                        isNullable: false,
                     },
                 ],
             }),
             true
         );
 
-        logger.info(`Table created: employees`);
+        logger.info(`Table created: customers`);
 
         await queryRunner.createForeignKey(
-            "employees",
+            "customers",
             new TableForeignKey({
-                columnNames: ["branch_id"],
-                referencedTableName: "post_office",
-                referencedColumnNames: ["branch_id"],
+                columnNames: ["address_id"],
+                referencedTableName: "address",
+                referencedColumnNames: ["address_id"],
                 onDelete: "RESTRICT",
-                onUpdate: "RESTRICT",
-                name: "FK_employee_branch_id"
+                name: "FK_address_id"
             })
         );
 
-        logger.info(`Foreign key created: FK_employee_branch_id`);
+        logger.info(`Foreign key created: FK_address_id`);
 
-        await queryRunner.createForeignKey(
-            "employees",
-            new TableForeignKey({
-                columnNames: ["manager_id"],
-                referencedTableName: "employees",
-                referencedColumnNames: ["employee_id"],
-                onDelete: "SET NULL",
-                name: "FK_employee_manager_id"
-            })
-        );
-
-        logger.info(`Foreign key created: FK_employee_manager_id`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropForeignKey("employees", "FK_employee_branch_id");
-        logger.info(`Foreign key dropped: FK_employee_manager_id`);
+        await queryRunner.dropForeignKey("customers", "FK_address_id");
+        logger.info(`Foreign key dropped: FK_address_id`);
 
-        await queryRunner.dropForeignKey("employees", "FK_employee_manager_id");
-        logger.info(`Foreign key dropped: FK_employee_branch_id`);
-
-        await queryRunner.dropTable("employees");
-        logger.info(`Table dropped: employees`);
+        await queryRunner.dropTable("customers");
+        logger.info(`Table dropped: customers`);
     }
 
 }

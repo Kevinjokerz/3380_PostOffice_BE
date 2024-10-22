@@ -1,7 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { PostOffice } from "./post_office.entity";
 import { Dependent } from "./dependent.entity";
-import { kMaxLength } from "buffer";
 
 
 @Entity('Employees')

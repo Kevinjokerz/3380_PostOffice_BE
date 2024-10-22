@@ -9,3 +9,95 @@ ${timestamp) [${level.toUpperCase()}]: ${message}
 2024-10-16 18:58:01 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Employees: password column remove. 
 2024-10-16 18:58:28 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Customer: password column added. 
 2024-10-16 18:58:29 [INFO]: Migration AddPasswordColumnToCustomerAndEmployee - Employees: password column added. 
+2024-10-19 22:16:18 [INFO]: Migration up: Address table created
+2024-10-19 22:16:19 [INFO]: Table created: post_office
+2024-10-19 22:16:21 [INFO]: Foreign key created: FK_post_office_address_id
+2024-10-19 22:16:22 [INFO]: Table created: employees
+2024-10-19 22:16:23 [INFO]: Foreign key created: FK_employee_branch_id
+2024-10-19 22:16:24 [INFO]: Foreign key created: FK_employee_manager_id
+2024-10-19 22:16:25 [INFO]: Table created: customers
+2024-10-19 22:16:26 [INFO]: Foreign key created: FK_address_id
+2024-10-19 22:18:57 [INFO]: Address table created
+2024-10-19 22:18:58 [INFO]: Table created: post_office
+2024-10-19 22:18:59 [INFO]: Foreign key created: FK_post_office_address_id
+2024-10-19 22:18:59 [INFO]: Table created: employees
+2024-10-19 22:19:01 [INFO]: Foreign key created: FK_employee_branch_id
+2024-10-19 22:19:02 [INFO]: Foreign key created: FK_employee_manager_id
+2024-10-19 22:19:02 [INFO]: Table created: customers
+2024-10-19 22:19:03 [INFO]: Foreign key created: FK_address_id
+2024-10-19 22:19:15 [INFO]: Foreign key dropped: FK_address_id
+2024-10-19 22:19:15 [INFO]: Table dropped: customers
+2024-10-19 22:20:00 [INFO]: Table created: customers
+2024-10-19 22:20:01 [INFO]: Foreign key created: FK_address_id
+2024-10-20 00:58:10 [INFO]: Table created: dependent
+2024-10-20 00:58:11 [INFO]: Foreign key created: FK_dependent_employee_id
+2024-10-20 01:06:42 [INFO]: Address table created
+2024-10-20 01:06:42 [INFO]: Table created: post_office
+2024-10-20 01:06:43 [INFO]: Foreign key created: FK_post_office_address_id
+2024-10-20 01:06:43 [INFO]: Table created: employees
+2024-10-20 01:06:45 [INFO]: Foreign key created: FK_employee_branch_id
+2024-10-20 01:06:46 [INFO]: Foreign key created: FK_employee_manager_id
+2024-10-20 01:06:46 [INFO]: Table created: customers
+2024-10-20 01:06:47 [INFO]: Foreign key created: FK_address_id
+2024-10-20 01:06:48 [INFO]: Table created: dependent
+2024-10-20 01:06:49 [INFO]: Foreign key created: FK_dependent_employee_id
+2024-10-21 04:07:18 [INFO]: Table created: Package
+2024-10-21 04:11:58 [INFO]: Table created: Packages
+2024-10-21 04:12:00 [INFO]: Foreign key created: FK_package_customer_id
+2024-10-21 04:13:03 [INFO]: Table created: Packages
+2024-10-21 04:22:19 [INFO]: Table created: Packages
+2024-10-21 04:25:06 [INFO]: Table created: Packages
+2024-10-21 04:25:08 [INFO]: Foreign key created: FK_package_customer_id
+2024-10-21 04:25:09 [INFO]: Foreign key created: FK_package_branch_id
+2024-10-21 04:25:10 [INFO]: Foreign key created: FK_package_sender_address_id
+2024-10-21 04:26:38 [INFO]: Table created: Packages
+2024-10-21 04:26:39 [INFO]: Foreign key created: FK_package_customer_id
+2024-10-21 04:26:40 [INFO]: Foreign key created: FK_package_branch_id
+2024-10-21 04:26:42 [INFO]: Foreign key created: FK_package_sender_address_id
+2024-10-21 04:26:43 [INFO]: Foreign key created: FK_package_recipient_address_id
+2024-10-21 04:26:43 [INFO]: Table created: tracking_history
+2024-10-21 04:26:45 [INFO]: Foreign key created: FK_tracking_history_package_id
+2024-10-21 04:26:45 [INFO]: Table created: supply
+2024-10-21 04:26:45 [INFO]: Table created: sale
+2024-10-21 04:26:46 [INFO]: Foreign key created: FK_supply_id
+2024-10-21 04:26:47 [INFO]: Foreign key created: FK_customer_id
+2024-10-21 04:27:44 [INFO]: Table created: sale
+2024-10-21 04:27:46 [INFO]: Foreign key created: FK_supply_id
+2024-10-21 04:27:48 [INFO]: Foreign key created: FK_customer_id
+2024-10-21 04:27:49 [INFO]: Foreign key created: FK_employee_id
+2024-10-21 04:27:50 [INFO]: Table created: transaction
+2024-10-21 04:27:50 [INFO]: Foreign key created: FK_transaction_package_id
+2024-10-21 04:27:52 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-10-21 04:28:40 [INFO]: Table created: transaction
+2024-10-21 04:28:41 [INFO]: Foreign key created: FK_transaction_package_id
+2024-10-21 04:28:43 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-10-21 04:29:23 [INFO]: Table created: transaction
+2024-10-21 04:29:24 [INFO]: Foreign key created: FK_transaction_package_id
+2024-10-21 04:29:25 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-10-21 04:29:27 [INFO]: Foreign key created: FK_transaction_employee_id
+2024-10-21 20:54:48 [INFO]: Address table created
+2024-10-21 20:54:48 [INFO]: Table created: post_office
+2024-10-21 20:54:49 [INFO]: Foreign key created: FK_post_office_address_id
+2024-10-21 20:54:50 [INFO]: Table created: employees
+2024-10-21 20:54:51 [INFO]: Foreign key created: FK_employee_branch_id
+2024-10-21 20:54:53 [INFO]: Foreign key created: FK_employee_manager_id
+2024-10-21 20:54:53 [INFO]: Table created: customers
+2024-10-21 20:54:54 [INFO]: Foreign key created: FK_address_id
+2024-10-21 20:54:54 [INFO]: Table created: dependent
+2024-10-21 20:54:56 [INFO]: Foreign key created: FK_dependent_employee_id
+2024-10-21 20:54:56 [INFO]: Table created: Packages
+2024-10-21 20:54:57 [INFO]: Foreign key created: FK_package_customer_id
+2024-10-21 20:54:58 [INFO]: Foreign key created: FK_package_branch_id
+2024-10-21 20:54:59 [INFO]: Foreign key created: FK_package_sender_address_id
+2024-10-21 20:55:01 [INFO]: Foreign key created: FK_package_recipient_address_id
+2024-10-21 20:55:02 [INFO]: Table created: tracking_history
+2024-10-21 20:55:03 [INFO]: Foreign key created: FK_tracking_history_package_id
+2024-10-21 20:55:03 [INFO]: Table created: supply
+2024-10-21 20:55:03 [INFO]: Table created: sale
+2024-10-21 20:55:04 [INFO]: Foreign key created: FK_supply_id
+2024-10-21 20:55:06 [INFO]: Foreign key created: FK_customer_id
+2024-10-21 20:55:07 [INFO]: Foreign key created: FK_employee_id
+2024-10-21 20:55:07 [INFO]: Table created: transaction
+2024-10-21 20:55:08 [INFO]: Foreign key created: FK_transaction_package_id
+2024-10-21 20:55:09 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-10-21 20:55:11 [INFO]: Foreign key created: FK_transaction_employee_id

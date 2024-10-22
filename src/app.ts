@@ -17,11 +17,11 @@ const options: CorsOptions = {
     allowedHeaders: '',
     credentials: true,
   };
-
 app.use(cors(options));
 app.use(helmet());
-app.use(express.json())
+app.use(express.json());
 app.use('/api',apiRouter);
+
 app.use(errorHandler);
 
 

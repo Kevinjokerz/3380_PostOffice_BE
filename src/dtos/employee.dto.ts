@@ -15,6 +15,13 @@ interface EmployeeLoginDTO {
     password: string;
 }
 
+interface UpdateEmployeeDTO {
+    firstName: string;
+    lastName: string;
+    DOB: Date;
+    phoneNumber: string;
+}
 
 
-export{ CreateEmployeeDTO, EmployeeLoginDTO };
+
+export{ CreateEmployeeDTO, EmployeeLoginDTO, UpdateEmployeeDTO };

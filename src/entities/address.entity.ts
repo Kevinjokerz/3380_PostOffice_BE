@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne } from "typeorm";
-import { Customer } from "./customer.entity";
+import { Customers } from "./customer.entity";
 import { PostOffice } from "./post_office.entity";
 
 @Entity('address')
@@ -16,10 +16,11 @@ export class Address {
     @Column({name: 'state', type: 'varchar', length:50})
     state!: string;
 
-    @Column({name: 'zip_code', type: 'varchar', length:10})
-    zipCode!: number;
+    @Column({name: 'zipcode', type: 'varchar', length:10})
+    zipCode!: string;
 
-    @OneToMany(() => Customer, (customer) => customer.address)
-    customers!: Customer[];
+    @OneToMany(() => Customers, (customer) => customer.address)
+    customers!: Customers[];
+
 
 }

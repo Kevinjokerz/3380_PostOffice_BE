@@ -1,8 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { Address } from "./address.entity";
+import {Packages} from './packages.entity'
 
-@Entity('Customer')
-export class Customer {
+@Entity('Customers')
+export class Customers {
     @PrimaryGeneratedColumn({name: 'customer_id'})
     customerId!: number;
 
@@ -18,11 +19,17 @@ export class Customer {
     @Column({name: 'phone_Number', type: 'varchar', length:50})
     phoneNumber: string;
 
+    @Column({name: 'address_id', type: 'int'})
+    addressID: number;
+
+    @Column({ name: 'password', type: 'varchar', length: 255 })
+    password!: string;
 
     @ManyToOne(() => Address, (address) => address.customers)
     @JoinColumn({name: 'address_id'})
     address!: Address;
 
-    @Column({name: 'is_active', type: 'bool', width: 1, default: 1})
-    isActive: boolean;
+
+    @OneToMany(() => Packages, (packages) => packages.customer)
+    packages: Packages[]
 }

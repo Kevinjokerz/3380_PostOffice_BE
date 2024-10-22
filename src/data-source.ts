@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
     port: Number(process.env.MYSQL_PORT) || 3306,
     synchronize: false,
     logging: process.env.DB_LOGGING === 'true',
-    entities: ['src/entities/**/*.ts'],
+    entities: ['src/entities/*.ts'],
     subscribers: [],
     migrations: ['src/migrations/*.ts'],
     // migrationsTableName: "custom_migration_table",

@@ -68,6 +68,11 @@ export class CreateEmployeesTable1729213149606 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
+                        name: "last_login",
+                        type: "timestamp",
+                        isNullable: true,
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "CURRENT_TIMESTAMP",

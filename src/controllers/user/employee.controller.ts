@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {employeesServices} from '../../services'
+import {employeesServices, trackingHistoryService} from '../../services'
 import {RequestWithEmployeeInfo, EmployeeInfo} from '../../types/custom-request.type'
 
 
@@ -16,6 +16,21 @@ class EmployeeController {
         const updatedEmployeeInfo = await employeesServices.editEmployeeProfile(employeeId, req.body);
         res.send(updatedEmployeeInfo);
     }    
+
+    async createPackage (req: RequestWithEmployeeInfo, res: Response) {
+        const { employeeId, branchId } = req.employeeInfo as EmployeeInfo;
+        const { payload } = req.body;
+        const { status } = payload;
+        const newPackage = await employeesServices.createPackage(employeeId, payload);
+        await trackingHistoryService.createTrackingHistory(branchId, {packageId: newPackage.packageId, status})
+        res.send(newPackage);
+    }
+
+    async updatePackage (req: Request, res: Response) {
+        const {payload} = req.body;
+        const updatedPackage = await employeesServices.updatePackage(payload);
+        res.send(updatedPackage);
+    }
 }
 
 const employeeController = new EmployeeController();

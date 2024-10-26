@@ -1,22 +1,30 @@
 import { AppDataSource } from '../../data-source'
-import { Employees } from '../../entities/employees.entity'
-import { NotFoundError } from '../../types/http-error.type'
+import { BadRequestError, NotFoundError } from '../../types/http-error.type'
 import { CatchAsyncDecorator } from '../../decorators/catch-async.decorator'
 import { Repository } from 'typeorm';
-import { PostOffice } from "../../entities/post_office.entity";
-import { UpdateEmployeeDTO } from '../../dtos';
+import { PostOffice, Employees, Packages, Customers, Address } from "../../entities";
+import { UpdateEmployeeDTO, createPackageDTO, updatePackageDTO } from '../../dtos';
+import { error } from 'console';
 
 
 // @CatchAsyncDecorator(EmployeesServices.name)
 class EmployeesServices {
     private employeeRepository: Repository<Employees>;
     private postOfficeRepository: Repository<PostOffice>;
+    private packageRepository: Repository<Packages>
+    private customerRepository: Repository<Customers>;
+    private addressRepository: Repository<Address>;
 
 constructor() {
     this.postOfficeRepository = AppDataSource.getRepository(PostOffice);
     this.employeeRepository = AppDataSource.getRepository(Employees);
+    this.packageRepository = AppDataSource.getRepository(Packages);
+    this.customerRepository = AppDataSource.getRepository(Customers);
+    this.addressRepository = AppDataSource.getRepository(Address);
 
     this.getEmployeeProfile = this.getEmployeeProfile.bind(this);
+    this.editEmployeeProfile = this.editEmployeeProfile.bind(this);
+    this.createPackage = this.createPackage.bind(this);
 }
 
 async getEmployeeProfile(employeeId : number) {
@@ -43,13 +51,92 @@ async editEmployeeProfile(employeeId: number, dto: UpdateEmployeeDTO) {
         throw new NotFoundError('Employee is not existed');
     }
     existedEmployee.firstName = dto.firstName;
-    console.log(dto)
-    console.log(existedEmployee.firstName)
     existedEmployee.lastName = dto.lastName;
     existedEmployee.DOB = dto.DOB;
     existedEmployee.phoneNumber = dto.phoneNumber;
     await this.employeeRepository.save(existedEmployee);
     return existedEmployee;
+}
+
+async createPackage(employeeId: number, dto: createPackageDTO) {
+    const existedEmployee = await this.employeeRepository.findOne({where: {employeeId}})
+    if(!existedEmployee) {
+        throw new NotFoundError('Employee is not existed');
+    }
+
+    const customerAddress = await this.addressRepository.findOne({where: {street: dto.customerStreet, city: dto.customerCity, state: dto.customerState, zipCode: dto.customerZipcode}})
+    if (!customerAddress) {
+        throw new BadRequestError("The provided address is not belonged to any current customer")
+    }
+
+    const existedCustomer = await this.customerRepository.findOne({where: {firstName: dto.customerFirstName, lastName: dto.customerLastName, addressID: customerAddress?.addressId}})
+    if (!existedCustomer) {
+        throw new BadRequestError("No customer found with the provided info, please register as a new customer to proceed")
+    }
+
+    const recipientAddress = await this.addressRepository.findOne({where: {street: dto.recipientStreet, city: dto.recipientCity, state: dto.recipientState, zipCode: dto.recipientZipcode}})
+    if (!recipientAddress) {
+        const newAddress = await this.addressRepository.create({
+            street: dto.recipientStreet,
+            city: dto.recipientCity,
+            state: dto.recipientState,
+            zipCode: dto.recipientZipcode
+        })
+
+        const recipientAddress = await this.addressRepository.save(newAddress);
+
+        const newPackage = await this.packageRepository.create({
+            customerId: existedCustomer.customerId,
+            branchId: existedEmployee.branchId,
+            senderAddressId: customerAddress.addressId,
+            recipientAddressId: recipientAddress.addressId,
+            weight: dto.weight,
+            dimensions: dto.dimensions,
+            amount: dto.amount,
+            shippingMethod: dto.shippingMethod,
+            status: dto.status,
+            shippingDate: dto.shippingDate || null,
+            deliveryDate: dto.deliveryDate || null,
+        })
+
+        await this.packageRepository.save(newPackage);
+
+        return newPackage;
+    }
+
+    const newPackage = await this.packageRepository.create({
+        customerId: existedCustomer.customerId,
+        branchId: existedEmployee.branchId,
+        senderAddressId: customerAddress.addressId,
+        recipientAddressId: recipientAddress.addressId,
+        weight: dto.weight,
+        dimensions: dto.dimensions,
+        amount: dto.amount,
+        shippingMethod: dto.shippingMethod,
+        status: dto.status,
+        shippingDate: dto.shippingDate || null,
+        deliveryDate: dto.deliveryDate || null,
+    })
+
+    await this.packageRepository.save(newPackage);
+
+    return newPackage;
+}
+
+async updatePackage (dto: updatePackageDTO) {
+    const existedPackage = await this.packageRepository.findOne({where: {packageId: dto.packageId}})
+    if(!existedPackage) {
+        throw new NotFoundError("Package does not exist");
+    }
+
+    existedPackage.status = dto.status,
+    existedPackage.shippingDate = dto.shippingDate,
+    existedPackage.deliveryDate = dto.deliveryDate,
+    existedPackage.branchId = dto.currentBranchId,
+
+    await this.packageRepository.save(existedPackage);
+    return existedPackage;
+
 }
 }
 

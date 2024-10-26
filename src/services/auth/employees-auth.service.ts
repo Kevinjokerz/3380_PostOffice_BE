@@ -50,7 +50,7 @@ constructor() {
             const hashPassword = await hash(dto.password, 10);
             const newEmployee = await this.employeeRepository.create({
                 ...dto,
-                password: hashPassword
+                password: hashPassword,
             });
             await this.employeeRepository.save(newEmployee);
     
@@ -68,7 +68,10 @@ constructor() {
             if(!passwordCheck) {
                 throw new BadRequestError('Wrong password');
             }
-    
+            
+
+            existedEmployee.lastLogin = new Date();
+            await this.employeeRepository.save(existedEmployee);
             const employeeInfo: EmployeeInfo = {
                 employeeId: existedEmployee.employeeId,
                 firstName: existedEmployee.firstName, 
@@ -79,9 +82,9 @@ constructor() {
             }
             const accessToken = sign(employeeInfo, JWT_SECRET, {expiresIn: '2h'});
             return accessToken;
-
-
 }
+
+
 }
 
 

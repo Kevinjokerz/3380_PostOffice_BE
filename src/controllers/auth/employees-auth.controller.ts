@@ -17,6 +17,7 @@ class EmployeesAuthController {
         const accessToken = await employeesAuthService.employeeLogin(payload);
         res.status(200).send(accessToken);
     }
+
 }
 
 const employeesauthController = new EmployeesAuthController();

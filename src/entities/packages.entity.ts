@@ -1,11 +1,11 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany, ManyToOne } from "typeorm";
-import {Address, Customers, PostOffice, TrackingHistory} from './index'
+import {Address, Customers, PostOffice, TrackingHistory, Transaction} from './index'
 
 @Entity('packages')
 export class Packages {
 
     @PrimaryGeneratedColumn({name: 'package_id'})
-    packageId!: Number;
+    packageId!: number;
 
     @Column({ name: 'customer_id', type: 'int', nullable: false })
     customerId!: number;
@@ -38,14 +38,14 @@ export class Packages {
     @Column({name: 'weight', type: 'decimal', precision: 10, scale: 2})
     weight: number;
 
-    @Column({name: 'dimension', type: 'varchar', length: 50, nullable: true})
-    dimension: string;
+    @Column({name: 'dimensions', type: 'varchar', length: 50, nullable: true})
+    dimensions: string;
 
     @Column({name: 'amount', type: 'decimal', precision: 10, scale: 2, nullable: true})
     amount: number;
 
     @Column({name: 'shipping_method', type: 'varchar', length: 50})
-    shippingMethod: number
+    shippingMethod: string;
 
     @Column({name: 'status', type: 'varchar', length: 50, nullable: true})
     status: string;
@@ -63,5 +63,8 @@ export class Packages {
     updatedAt: Date;
     
     @OneToMany(() => TrackingHistory, (trackingHistories) => trackingHistories.pkg)
-    trackingHistories: TrackingHistory
+    trackingHistories: TrackingHistory[];
+
+    @OneToMany(() => Transaction, (transactions) => transactions.pkg)
+    transactions: Transaction[];
 }

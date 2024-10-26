@@ -1,6 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany } from "typeorm";
-import { Address } from "./address.entity";
-import {Packages} from './packages.entity'
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany} from "typeorm";
+import {Packages, Address, Transaction} from './index';
 
 @Entity('Customers')
 export class Customers {
@@ -29,7 +28,12 @@ export class Customers {
     @JoinColumn({name: 'address_id'})
     address!: Address;
 
+    @Column({ name: "deleted_at", type: "timestamp", nullable: true })
+    deletedAt?: Date;
 
     @OneToMany(() => Packages, (packages) => packages.customer)
     packages: Packages[]
+
+    @OneToMany(() => Transaction, (transactions) => transactions.customer)
+    transactions: Transaction[];
 }

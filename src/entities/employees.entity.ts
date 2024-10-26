@@ -1,6 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
-import { PostOffice } from "./post_office.entity";
-import { Dependent } from "./dependent.entity";
+import { Transaction, Dependent, PostOffice } from "./index";
 
 
 @Entity('Employees')
@@ -35,6 +34,9 @@ export class Employees {
     @Column({ name: 'password', type: 'varchar', length: 255 })
     password!: string;
 
+    @Column({name: "last_login", type: "timestamp", nullable: true})
+    lastLogin: Date;
+
     @ManyToOne(() => PostOffice, (postOffice) => postOffice.employees)
     @JoinColumn({name: 'branch_id'})
     postOffice!: PostOffice;
@@ -52,4 +54,7 @@ export class Employees {
   
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt!: Date;
+
+    @OneToMany(() =>  Transaction, (transactions) => transactions.employee)
+    transactions: Transaction[]
 }

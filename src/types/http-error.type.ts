@@ -40,4 +40,11 @@ class UnAuthorizedError extends HTTPError {
     }
 }
 
-export { HTTPError, BadRequestError, NotFoundError, ConflictError, InternalServerError, UnAuthorizedError }
+class ForbiddenError extends HTTPError {
+    constructor(message?: string){
+        super(403, message || "Forbidden Error")
+    }
+}
+
+
+export { HTTPError, BadRequestError, NotFoundError, ConflictError, InternalServerError, UnAuthorizedError, ForbiddenError }

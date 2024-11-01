@@ -63,6 +63,7 @@ constructor() {
             })
 
             await this.customerRepository.save(newCustomer);
+            console.log(newCustomer)
             return newCustomer;
     }
 

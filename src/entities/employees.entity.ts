@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 import { Transaction, Dependent, PostOffice } from "./index";
 
 
-@Entity('Employees')
+@Entity('employees')
 export class Employees {
     @PrimaryGeneratedColumn({name: 'employee_id'})
     employeeId!: number;

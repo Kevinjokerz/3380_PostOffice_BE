@@ -7,9 +7,9 @@ dotenv.config()
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: process.env.MYSQL_HOST || 'localhost',
+    host: process.env.MYSQL_HOST || 'db',
     username: process.env.MYSQL_USER || 'root',
-    password: process.env.MYSQL_PASSWORD || '',
+    password: process.env.MYSQL_PASSWORD || 'Zlzlz1z1zlz1!!!',
     database: process.env.MYSQL_DATABASE || 'mydatabase',
     port: Number(process.env.MYSQL_PORT) || 3306,
     synchronize: false,

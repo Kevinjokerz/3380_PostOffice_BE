@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: post_office
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: letmein
+      MYSQL_ROOT_PASSWORD: Zlzlz1z1zlz1!!!
+    ports:
+      - 3307:3306
+    expose:
+      - 3306
+    networks:
+      - internalnetwork
+  
+  server:
+    build: 
+      dockerfile: Dockerfile
+    image: post_office_backend
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      MYSQL_HOST: db
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'Zlzlz1z1zlz1!!!'
+      MYSQL_DATABASE: post_office
+      MYSQL_PORT: 3306
+      DB_SYNCHRONIZE: false
+      DB_LOGGING: false
+      JWT_SECRET: 'supersecretkey'
+    restart: unless-stopped
+    networks:
+      - internalnetwork
+
+networks:
+  internalnetwork:
+    driver: bridge
+

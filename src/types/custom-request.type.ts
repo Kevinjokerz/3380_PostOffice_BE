@@ -9,9 +9,10 @@ type EmployeeInfo = {
     position: string, 
     branchId: number};
 
-    type CustomerInfo = {
-        customerId : number,  
-        addressId: number};
+type CustomerInfo = {
+    customerId : number,  
+    addressId: number};
+
 
 
 

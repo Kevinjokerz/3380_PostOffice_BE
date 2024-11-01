@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany} from "typeorm";
 import {Packages, Address, Transaction} from './index';
 
-@Entity('Customers')
+@Entity('customers')
 export class Customers {
     @PrimaryGeneratedColumn({name: 'customer_id'})
     customerId!: number;

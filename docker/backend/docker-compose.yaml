@@ -1,0 +1,40 @@
+
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: post_office
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: letmein
+      MYSQL_ROOT_PASSWORD: Zlzlz1z1zlz1!!!
+    ports:
+      - '3307:3306'
+    expose:
+      - 3306
+  server:
+    build: 
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_ROOT_PASSWORD: 123456
+      DB_DATABASE: post_office
+    restart: always
+  backend:
+    build:
+      context: ../../
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      - DB_PORT=3306
+      - DB_HOST=DB
+    ports:
+      - 8080:8080

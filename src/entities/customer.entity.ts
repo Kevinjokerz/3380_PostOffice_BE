@@ -29,7 +29,7 @@ export class Customers {
     address!: Address;
 
     @Column({ name: "deleted_at", type: "timestamp", nullable: true })
-    deletedAt?: Date;
+    deletedAt?: Date | null;
 
     @OneToMany(() => Packages, (packages) => packages.customer)
     packages: Packages[]

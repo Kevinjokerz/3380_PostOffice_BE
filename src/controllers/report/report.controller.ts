@@ -11,6 +11,11 @@ class DataReportController {
         res.send(packageAndTrackingHistoriesReport)
     }
 
+    async getEmployeeInfoAndRecentLoginsByBranchId (req: RequestWithEmployeeInfo, res: Response) {
+        const { branchId } = req.employeeInfo as EmployeeInfo;
+        const employeeInfoAndRecentLoginsReport = await dataReportService.getEmployeeInfoAndEmployeeRecentLoginByBranchId(branchId);
+        res.send(employeeInfoAndRecentLoginsReport)
+    }
 
 }
 

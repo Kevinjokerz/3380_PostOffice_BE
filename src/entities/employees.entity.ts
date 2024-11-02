@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
-import { Transaction, Dependent, PostOffice } from "./index";
+import { Transaction, Dependent, PostOffice, EmployeeRecentLogin } from "./index";
 
 
 @Entity('employees')
@@ -57,4 +57,9 @@ export class Employees {
 
     @OneToMany(() =>  Transaction, (transactions) => transactions.employee)
     transactions: Transaction[]
+
+    @OneToMany(() => EmployeeRecentLogin, (recentLogins) => recentLogins.employee)
+    recentLogins: EmployeeRecentLogin[];
+
+
 }

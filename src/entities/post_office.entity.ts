@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
-import { Packages, Address, Employees } from "./index";
+import { Packages, Address, Employees, EmployeeRecentLogin } from "./index";
 
 
 @Entity('post_office')
@@ -28,4 +28,7 @@ export class PostOffice {
 
     @OneToMany(() => Packages, (packages) => packages.branch)
     packages: Packages[];
+
+    @OneToMany(() => EmployeeRecentLogin, (recentLogins) => recentLogins.postOffice)
+    recentLogins: EmployeeRecentLogin[];
 }

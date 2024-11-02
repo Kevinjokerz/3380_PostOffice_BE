@@ -12,6 +12,7 @@ employeeRouter.put('/edit-profile', employeeAuthenticationMiddleware, asyncHandl
 employeeRouter.post('/create-new-package',validateBody(packageCreateValidator), employeeAuthenticationMiddleware, asyncHandler(employeeController.createPackage));
 employeeRouter.put('/update-package', employeeAuthenticationMiddleware, asyncHandler(employeeController.updatePackage));
 employeeRouter.get('/package-and-tracking-report', managerAuthenticationMiddleware, asyncHandler(dataReportController.getPackageInfoAndTrackingHistoryByBranchId));
+employeeRouter.get('/employees-and-logins-report', managerAuthenticationMiddleware, asyncHandler(dataReportController.getEmployeeInfoAndRecentLoginsByBranchId));
 
 
 export default employeeRouter;

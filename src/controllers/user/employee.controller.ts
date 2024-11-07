@@ -31,6 +31,13 @@ class EmployeeController {
         const updatedPackage = await employeesServices.updatePackage(payload);
         res.send(updatedPackage);
     }
+
+    async addDependent (req: RequestWithEmployeeInfo, res: Response) {
+        const { employeeId } = req.employeeInfo as EmployeeInfo;
+        const { payload } = req.body;
+        const newDependent = await employeesServices.addDependent(employeeId, payload);
+        res.send(newDependent)
+    }
 }
 
 const employeeController = new EmployeeController();

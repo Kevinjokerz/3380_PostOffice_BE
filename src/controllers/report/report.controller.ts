@@ -7,7 +7,8 @@ import {dataReportService} from '../../services'
 class DataReportController {
     async getPackageInfoAndTrackingHistoryByBranchId (req: RequestWithEmployeeInfo, res: Response){
         const { branchId } = req.employeeInfo as EmployeeInfo;
-        const packageAndTrackingHistoriesReport = await dataReportService.getPackageInfoAndTrackingHistoriesByBranchId(branchId);
+        const {startDate, endDate} = req.body || undefined;
+        const packageAndTrackingHistoriesReport = await dataReportService.getPackageInfoAndTrackingHistoriesByBranchId(branchId, startDate, endDate);
         res.send(packageAndTrackingHistoriesReport)
     }
 
@@ -15,6 +16,13 @@ class DataReportController {
         const { branchId } = req.employeeInfo as EmployeeInfo;
         const employeeInfoAndRecentLoginsReport = await dataReportService.getEmployeeInfoAndEmployeeRecentLoginByBranchId(branchId);
         res.send(employeeInfoAndRecentLoginsReport)
+    }
+
+    async getEmployeeInfoAndDependentsByBranchId (req: RequestWithEmployeeInfo, res: Response) {
+        const { branchId } = req.employeeInfo as EmployeeInfo;
+        const {startDate, endDate} = req.body || undefined;
+        const employeeAndDependentsReport = await dataReportService.getEmployeesInfoAndDependentsInfoByBranchId(branchId, startDate, endDate);
+        res.send(employeeAndDependentsReport);
     }
 
 }

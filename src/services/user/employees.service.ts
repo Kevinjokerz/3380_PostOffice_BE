@@ -1,9 +1,9 @@
 import { AppDataSource } from '../../data-source'
-import { BadRequestError, NotFoundError } from '../../types/http-error.type'
+import { BadRequestError, ConflictError, NotFoundError } from '../../types/http-error.type'
 import { CatchAsyncDecorator } from '../../decorators/catch-async.decorator'
 import { Repository } from 'typeorm';
-import { PostOffice, Employees, Packages, Customers, Address } from "../../entities";
-import { UpdateEmployeeDTO, createPackageDTO, updatePackageDTO } from '../../dtos';
+import { PostOffice, Employees, Packages, Customers, Address, Dependent } from "../../entities";
+import { UpdateEmployeeDTO, createPackageDTO, updatePackageDTO, CreateDependentDto } from '../../dtos';
 import { error } from 'console';
 
 
@@ -14,6 +14,7 @@ class EmployeesServices {
     private packageRepository: Repository<Packages>
     private customerRepository: Repository<Customers>;
     private addressRepository: Repository<Address>;
+    private dependentRepository: Repository<Dependent>;
 
 constructor() {
     this.postOfficeRepository = AppDataSource.getRepository(PostOffice);
@@ -21,10 +22,13 @@ constructor() {
     this.packageRepository = AppDataSource.getRepository(Packages);
     this.customerRepository = AppDataSource.getRepository(Customers);
     this.addressRepository = AppDataSource.getRepository(Address);
+    this.dependentRepository = AppDataSource.getRepository(Dependent);
 
     this.getEmployeeProfile = this.getEmployeeProfile.bind(this);
     this.editEmployeeProfile = this.editEmployeeProfile.bind(this);
     this.createPackage = this.createPackage.bind(this);
+    this.addDependent = this.addDependent.bind(this);
+
 }
 
 async getEmployeeProfile(employeeId : number) {
@@ -138,6 +142,27 @@ async updatePackage (dto: updatePackageDTO) {
     return existedPackage;
 
 }
+
+async addDependent (employeeId: number, dto: CreateDependentDto) {
+    const employee = await this.employeeRepository.findOne({where: {employeeId}});
+    if(!employee) {
+        throw new NotFoundError('Employee not found');
+    }
+
+    const existedDependent = await this.dependentRepository.findOne({where: {employeeId, firstName: dto.firstName, lastName: dto.lastName, DOB: dto.DOB, sex: dto.sex}})
+    if(existedDependent) {
+        throw new ConflictError('Dependent already existed');
+    }
+
+    const newDependent = this.dependentRepository.create({
+        ...dto,
+        employeeId: employee.employeeId
+    })
+
+    await this.dependentRepository.save(newDependent);
+    return newDependent;
+}
+
 }
 
 const employeesServices = new EmployeesServices();

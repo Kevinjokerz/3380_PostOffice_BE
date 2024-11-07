@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, Collection, JoinColumn } from "typeorm";
 import { Employees } from "./employees.entity";
 
 @Entity('dependent')
@@ -12,9 +12,19 @@ export class Dependent {
     @Column({name: 'last_Name', type: 'varchar', length:50})
     lastName!: string;
 
+    @Column({name: 'relationship', type: 'varchar', length:50})
+    relationship: string;
+
     @Column({name: 'date_of_birth', type: 'date'})
-    DOB!: Date
+    DOB!: Date;
+
+    @Column({name: 'sex', type: 'char' ,length: 1 })
+    sex: string;
+
+    @Column({name: "employee_id", type: 'varchar'})
+    employeeId: number;
 
     @ManyToOne(() => Employees, (employee) => employee.dependents)
+    @JoinColumn({name: 'employee_id'})
     employee!: Employees;
 }

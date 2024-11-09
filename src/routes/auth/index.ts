@@ -5,11 +5,11 @@ import { employeeCreateValidator, employeeLoginValidator, customerCreateValidato
 
 const authRouter = Router();
 
-authRouter.post('/employee-register', managerAuthenticationMiddleware, validateBody(employeeCreateValidator), asyncHandler(employeesauthController.employeeRegister));
+authRouter.post('/employee-register', asyncHandler(managerAuthenticationMiddleware), validateBody(employeeCreateValidator), asyncHandler(employeesauthController.employeeRegister));
 authRouter.post('/employee-login', validateBody(employeeLoginValidator), asyncHandler(employeesauthController.employeeLogin));
 authRouter.post('/customer-register', validateBody(customerCreateValidator), asyncHandler(customerAuthController.customerRegister));
 authRouter.post('/customer-login', validateBody(customerLoginValidator), asyncHandler(customerAuthController.customerLogin));
-authRouter.patch('/delete-customer-account', customerAuthenticationMiddleware, asyncHandler(customerAuthController.customerSoftDelete));
+authRouter.patch('/delete-customer-account', asyncHandler(customerAuthenticationMiddleware), asyncHandler(customerAuthController.customerSoftDelete));
 
 
 

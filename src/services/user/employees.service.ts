@@ -172,7 +172,7 @@ async createPackage(employeeId: number, dto: createPackageDTO) {
             dimensions: dto.dimensions,
             amount: this.calculateTotalFee(dto.dimensions, dto.weight, dto.shippingMethod),
             shippingMethod: dto.shippingMethod,
-            status: "received",
+            status : "received",
             shippingDate: dto.shippingDate || null,
             deliveryDate: dto.deliveryDate || null,
         })

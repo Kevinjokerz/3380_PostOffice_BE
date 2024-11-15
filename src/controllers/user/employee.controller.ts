@@ -20,9 +20,8 @@ class EmployeeController {
     async createPackage (req: RequestWithEmployeeInfo, res: Response) {
         const { employeeId, branchId } = req.employeeInfo as EmployeeInfo;
         const { payload } = req.body;
-        const { status } = payload;
         const newPackage = await employeesServices.createPackage(employeeId, payload);
-        await trackingHistoryService.createTrackingHistory(branchId, {packageId: newPackage.packageId, status})
+        await trackingHistoryService.createTrackingHistory(branchId, {packageId: newPackage.packageId, status: 'received'})
         await transactionService.createNewTransaction(newPackage.customerId, newPackage.packageId)
         res.send(newPackage);
     }

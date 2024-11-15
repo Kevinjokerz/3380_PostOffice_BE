@@ -7,7 +7,6 @@ interface createPackageDTO {
     weight: number,
     dimensions: string,
     shippingMethod: string,
-    status: string,
     shippingDate: Date,
     deliveryDate: Date,
 }

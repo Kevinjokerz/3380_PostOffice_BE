@@ -16,7 +16,6 @@ const packageCreateValidator = Joi.object<CreatePackagePayload>().keys({
         weight: Joi.number().precision(10).required(),
         dimensions: Joi.string().max(50).required(),
         shippingMethod: Joi.string().max(50).required(),
-        status: Joi.string().max(50).optional(),
         shippingDate: Joi.date().optional(),
         deliveryDate: Joi.date().optional(),
     })

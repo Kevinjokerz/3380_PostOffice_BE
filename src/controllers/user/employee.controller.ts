@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {employeesServices, trackingHistoryService} from '../../services'
+import {employeesServices, trackingHistoryService, transactionService} from '../../services'
 import {RequestWithEmployeeInfo, EmployeeInfo} from '../../types/custom-request.type'
 
 
@@ -23,6 +23,7 @@ class EmployeeController {
         const { status } = payload;
         const newPackage = await employeesServices.createPackage(employeeId, payload);
         await trackingHistoryService.createTrackingHistory(branchId, {packageId: newPackage.packageId, status})
+        await transactionService.createNewTransaction(newPackage.customerId, newPackage.packageId)
         res.send(newPackage);
     }
 

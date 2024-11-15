@@ -27,14 +27,8 @@ export class CreateTransactionTable1729500557474 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
-                        name: "employee_id",
+                        name: "branch_id",
                         type: "int",
-                        isNullable: false,
-                    },
-                    {
-                        name: "transaction_type",
-                        type: "varchar",
-                        length: "50",
                         isNullable: false,
                     },
                     {
@@ -86,14 +80,14 @@ export class CreateTransactionTable1729500557474 implements MigrationInterface {
         await queryRunner.createForeignKey(
             "transactions",
             new TableForeignKey({
-                columnNames: ["employee_id"],
-                referencedTableName: "employees",
-                referencedColumnNames: ["employee_id"],
+                columnNames: ["branch_id"],
+                referencedTableName: "post_office",
+                referencedColumnNames: ["branch_id"],
                 onDelete: "RESTRICT",
-                name: "FK_transaction_employee_id"
+                name: "FK_transaction_branch_id"
             })
         );
-        logger.info(`Foreign key created: FK_transaction_employee_id`);
+        logger.info(`Foreign key created: FK_transaction_branch_id`);
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
@@ -103,8 +97,8 @@ export class CreateTransactionTable1729500557474 implements MigrationInterface {
         await queryRunner.dropForeignKey("transactions", "FK_transaction_customer_id");
         logger.info(`Foreign key dropped: FK_transaction_customer_id`);
 
-        await queryRunner.dropForeignKey("transactions", "FK_transaction_employee_id");
-        logger.info(`Foreign key dropped: FK_transaction_employee_id`);
+        await queryRunner.dropForeignKey("transactions", "FK_transaction_branch_id");
+        logger.info(`Foreign key dropped: FK_transaction_branch_id`);
 
         await queryRunner.dropTable("transactions");
         logger.info(`Table dropped: transaction`);

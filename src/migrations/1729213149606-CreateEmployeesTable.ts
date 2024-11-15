@@ -37,7 +37,8 @@ export class CreateEmployeesTable1729213149606 implements MigrationInterface {
                         name: "email",
                         type: "varchar",
                         length: "50",
-                        isNullable: false
+                        isNullable: false,
+                        isUnique: true,
                     },
                     {
                         name:"phone_number",

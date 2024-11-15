@@ -1,6 +1,6 @@
 import { AppDataSource } from "../../data-source";
-import {Customers, Address} from '../../entities'
-import { NotFoundError } from '../../types/http-error.type'
+import {Customers, Address, Packages, TrackingHistory} from '../../entities'
+import { BadRequestError, NotFoundError } from '../../types/http-error.type'
 import { UpdateCustomerDTO } from '../../dtos'
 import { Repository } from 'typeorm';
 
@@ -8,13 +8,18 @@ import { Repository } from 'typeorm';
 class CustomersService {
     private addressRepository: Repository<Address>;
     private customerRepository: Repository<Customers>;
+    private packageRepository: Repository<Packages>;
+    private trackingHistoryRepository: Repository<TrackingHistory>;
 
 constructor() {
     this.addressRepository = AppDataSource.getRepository(Address);
     this.customerRepository = AppDataSource.getRepository(Customers);
+    this.packageRepository = AppDataSource.getRepository(Packages);
+    this.trackingHistoryRepository = AppDataSource.getRepository(TrackingHistory);
 
     this.getCustomerProfile = this.getCustomerProfile.bind(this);
     this.editCustomerProfile = this.editCustomerProfile.bind(this);
+    this.cancelPackageByCustomerIdAndPackageId = this.cancelPackageByCustomerIdAndPackageId.bind(this);
 }
 
 async getCustomerProfile(customerId: number) {
@@ -76,6 +81,30 @@ async editCustomerProfile(customerId: number, dto: UpdateCustomerDTO) {
         customerNewAddresss,
     }
 }
+
+async cancelPackageByCustomerIdAndPackageId (customerId: number, packageId: number) {
+    const packageToCancel = await this.packageRepository.findOne({where: {packageId, customerId}})
+
+    if(!packageToCancel) {
+        throw new NotFoundError('Package not found')
+    }
+
+    if(packageToCancel.status === "canceled"){
+        throw new BadRequestError('Package has already been canceled');
+    }
+
+    if(packageToCancel.status === 'out for delivery' || packageToCancel.status === 'deliverd') {
+        throw new BadRequestError(`Package cannot be canceled as it is out for delivery or already delivered`);
+    }
+
+    packageToCancel.status = "canceled";
+    await this.packageRepository.save(packageToCancel);
+
+    return {message: 'Package cancel successfully'};
+
+    
+} 
+
 }
 
 

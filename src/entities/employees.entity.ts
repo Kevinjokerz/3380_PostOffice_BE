@@ -55,9 +55,6 @@ export class Employees {
     @UpdateDateColumn({ name: 'updated_at' })
     updatedAt!: Date;
 
-    @OneToMany(() =>  Transaction, (transactions) => transactions.employee)
-    transactions: Transaction[]
-
     @OneToMany(() => EmployeeRecentLogin, (recentLogins) => recentLogins.employee)
     recentLogins: EmployeeRecentLogin[];
 

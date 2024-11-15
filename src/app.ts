@@ -22,7 +22,7 @@ app.use(helmet());
 app.use(express.json());
 app.use('/api',apiRouter);
 
-app.use(errorHandler);
+//app.use(errorHandler);
 
 
 export default app;

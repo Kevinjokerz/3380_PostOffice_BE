@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, CreateDateColumn } from "typeorm";
-import { Employees, Customers, Packages } from "./index";
+import { PostOffice, Customers, Packages } from "./index";
 
 @Entity('transactions')
 export class Transaction {
@@ -20,19 +20,19 @@ export class Transaction {
     @JoinColumn({ name: 'customer_id' })
     customer!: Customers;
 
-    @Column({name: 'employee_id', type: 'varchar', nullable: false})
-    employeeId: number;
+    @Column({name: 'branch_id', type: 'int', nullable: false})
+    branchId: number;
 
-    @ManyToOne(() => Employees, (employee) => employee.transactions, { nullable: false, onDelete: 'RESTRICT' })
-    @JoinColumn({ name: 'employee_id' })
-    employee!: Employees;
-
-    @Column({ name: 'transaction_type', type: 'varchar', length: 50, nullable: false })
-    transactionType!: string;
+    @ManyToOne(() => PostOffice, (employee) => employee.transactions, { nullable: false, onDelete: 'RESTRICT' })
+    @JoinColumn({ name: 'branch_id' })
+    branch!: PostOffice;
 
     @CreateDateColumn({ name: 'transaction_date' })
     transactionDate!: Date;
 
     @Column({ name: 'amount', type: 'decimal', precision: 10, scale: 0, nullable: false })
     amount!: number;
+
+    @Column({ name: 'transaction_status', type: 'varchar', nullable: false })
+    transactionStatus!: string;
 }

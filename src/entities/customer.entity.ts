@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne, OneToMany} from "typeorm";
-import {Packages, Address, Transaction} from './index';
+import {Packages, Address, Transaction, Notifications} from './index';
 
 @Entity('customers')
 export class Customers {
@@ -36,4 +36,7 @@ export class Customers {
 
     @OneToMany(() => Transaction, (transactions) => transactions.customer)
     transactions: Transaction[];
+
+    @OneToMany(() => Notifications, (notifications) => notifications.customer)
+    notifications: Notifications[];
 }

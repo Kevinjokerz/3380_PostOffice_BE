@@ -370,3 +370,243 @@ ${timestamp) [${level.toUpperCase()}]: ${message}
 2024-10-28 04:08:06 [INFO]: Foreign key created: FK_employee_recent_login_branch_id
 2024-10-28 04:08:06 [INFO]: Trigger created: record_employee_login_activity
 2024-10-28 04:08:06 [INFO]: Column Added to customers Table: deleted_at
+2024-11-11 21:20:07 [INFO]: Trigger created: validate_delivery_date
+2024-11-12 00:24:02 [INFO]: Trigger created: check_inventory_capacity
+2024-11-12 01:13:46 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 01:53:57 [INFO]: Column dropped from packages Table: is_deleted
+2024-11-12 01:57:06 [INFO]: Trigger dropped: check_inventory_capacity
+2024-11-12 01:57:39 [INFO]: Trigger dropped: validate_delivery_date
+2024-11-12 02:07:15 [INFO]: Trigger created: validate_delivery_date
+2024-11-12 02:09:30 [INFO]: Trigger created: check_inventory_capacity
+2024-11-12 02:09:31 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 02:21:19 [INFO]: Column dropped from packages Table: is_deleted
+2024-11-12 02:21:48 [INFO]: Trigger dropped: check_inventory_capacity
+2024-11-12 02:23:01 [INFO]: Trigger created: check_inventory_capacity
+2024-11-12 02:23:01 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 02:37:42 [INFO]: Column dropped from packages Table: is_deleted
+2024-11-12 02:38:06 [INFO]: Trigger dropped: check_inventory_capacity
+2024-11-12 02:39:44 [INFO]: Trigger created: check_inventory_capacity
+2024-11-12 02:39:44 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 02:46:04 [INFO]: Column dropped from packages Table: is_deleted
+2024-11-12 02:46:30 [INFO]: Trigger dropped: check_inventory_capacity
+2024-11-12 02:46:57 [INFO]: Trigger created: check_inventory_capacity
+2024-11-12 02:46:58 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 02:51:15 [INFO]: Column dropped from packages Table: is_deleted
+2024-11-12 02:51:36 [INFO]: Trigger dropped: check_inventory_capacity
+2024-11-12 02:52:03 [INFO]: Trigger created: check_inventory_capacity
+2024-11-12 02:52:03 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 03:01:10 [INFO]: Column dropped from packages Table: is_deleted
+2024-11-12 03:01:30 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 03:07:20 [INFO]: Column dropped from packages Table: is_deleted
+2024-11-12 03:07:42 [INFO]: Trigger dropped: check_inventory_capacity
+2024-11-12 03:09:55 [INFO]: Trigger created: check_inventory_capacity
+2024-11-12 03:09:56 [INFO]: Column Added to packages Table: is_deleted
+2024-11-12 03:29:35 [INFO]: Trigger created: update_tracking_history_package_is_transferred
+2024-11-13 16:11:29 [INFO]: update_tracking_history_package_is_transferred
+2024-11-14 01:43:00 [INFO]: Table created: notifications
+2024-11-14 01:43:01 [INFO]: Foreign key created: FK_notifications_customer_id
+2024-11-14 01:43:01 [INFO]: Foreign key created: FK_notifications_package_id
+2024-11-14 01:58:41 [INFO]: Event scheduler created: update_delayed_packages
+2024-11-14 02:19:51 [INFO]: Trigger created: notify_package_delay
+2024-11-14 03:27:09 [INFO]: Table created: need_employee_action
+2024-11-14 03:27:09 [INFO]: Foreign key created: FK_need_employee_action_employee_id
+2024-11-14 03:27:09 [INFO]: Foreign key created: FK_need_employee_action_package_id
+2024-11-14 14:42:28 [INFO]: Address table created
+2024-11-14 14:42:29 [INFO]: Table created: post_office
+2024-11-14 14:42:30 [INFO]: Foreign key created: FK_post_office_address_id
+2024-11-14 14:42:30 [INFO]: Table created: employees
+2024-11-14 14:42:32 [INFO]: Foreign key created: FK_employee_branch_id
+2024-11-14 14:42:33 [INFO]: Foreign key created: FK_employee_manager_id
+2024-11-14 14:42:33 [INFO]: Table created: customers
+2024-11-14 14:42:34 [INFO]: Foreign key created: FK_address_id
+2024-11-14 14:42:35 [INFO]: Table created: dependent
+2024-11-14 14:42:36 [INFO]: Foreign key created: FK_dependent_employee_id
+2024-11-14 14:42:36 [INFO]: Table created: Packages
+2024-11-14 14:42:37 [INFO]: Foreign key created: FK_package_customer_id
+2024-11-14 14:42:38 [INFO]: Foreign key created: FK_package_branch_id
+2024-11-14 14:42:39 [INFO]: Foreign key created: FK_package_sender_address_id
+2024-11-14 14:42:41 [INFO]: Foreign key created: FK_package_recipient_address_id
+2024-11-14 14:42:41 [INFO]: Table created: tracking_history
+2024-11-14 14:42:42 [INFO]: Foreign key created: FK_tracking_history_package_id
+2024-11-14 14:42:42 [INFO]: Table created: supply
+2024-11-14 14:42:43 [INFO]: Table created: sale
+2024-11-14 14:42:44 [INFO]: Foreign key created: FK_supply_id
+2024-11-14 14:42:45 [INFO]: Foreign key created: FK_customer_id
+2024-11-14 14:42:46 [INFO]: Foreign key created: FK_employee_id
+2024-11-14 14:42:46 [INFO]: Table created: transaction
+2024-11-14 14:42:47 [INFO]: Foreign key created: FK_transaction_package_id
+2024-11-14 14:42:48 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-11-14 14:42:49 [INFO]: Foreign key created: FK_transaction_branch_id
+2024-11-14 14:42:49 [INFO]: Trigger created: mail_status_updated_trigger
+2024-11-14 14:42:50 [INFO]: Table created: employee_recent_logins
+2024-11-14 14:42:51 [INFO]: Foreign key created: FK_employee_recent_login_employee_id
+2024-11-14 14:42:52 [INFO]: Foreign key created: FK_employee_recent_login_branch_id
+2024-11-14 14:42:52 [INFO]: Trigger created: record_employee_login_activity
+2024-11-14 14:42:53 [INFO]: Column Added to customers Table: deleted_at
+2024-11-14 14:42:53 [INFO]: Trigger created: validate_delivery_date
+2024-11-14 14:42:53 [INFO]: Trigger created: check_inventory_capacity
+2024-11-14 14:42:53 [INFO]: Column Added to packages Table: is_deleted
+2024-11-14 14:42:54 [INFO]: Table created: notifications
+2024-11-14 14:42:54 [INFO]: Foreign key created: FK_notifications_customer_id
+2024-11-14 14:42:56 [INFO]: Foreign key created: FK_notifications_package_id
+2024-11-14 14:42:56 [INFO]: Event scheduler created: update_delayed_packages
+2024-11-14 14:42:56 [INFO]: Trigger created: notify_package_delay
+2024-11-14 14:42:56 [INFO]: Table created: need_employee_action
+2024-11-14 14:42:57 [INFO]: Foreign key created: FK_need_employee_action_employee_id
+2024-11-14 14:42:59 [INFO]: Foreign key created: FK_need_employee_action_package_id
+2024-11-14 14:42:59 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 14:45:54 [INFO]: Address table created
+2024-11-14 14:45:55 [INFO]: Table created: post_office
+2024-11-14 14:45:56 [INFO]: Foreign key created: FK_post_office_address_id
+2024-11-14 14:45:56 [INFO]: Table created: employees
+2024-11-14 14:45:57 [INFO]: Foreign key created: FK_employee_branch_id
+2024-11-14 14:45:58 [INFO]: Foreign key created: FK_employee_manager_id
+2024-11-14 14:45:59 [INFO]: Table created: customers
+2024-11-14 14:46:00 [INFO]: Foreign key created: FK_address_id
+2024-11-14 14:46:00 [INFO]: Table created: dependent
+2024-11-14 14:46:01 [INFO]: Foreign key created: FK_dependent_employee_id
+2024-11-14 14:46:01 [INFO]: Table created: Packages
+2024-11-14 14:46:02 [INFO]: Foreign key created: FK_package_customer_id
+2024-11-14 14:46:04 [INFO]: Foreign key created: FK_package_branch_id
+2024-11-14 14:46:05 [INFO]: Foreign key created: FK_package_sender_address_id
+2024-11-14 14:46:06 [INFO]: Foreign key created: FK_package_recipient_address_id
+2024-11-14 14:46:06 [INFO]: Table created: tracking_history
+2024-11-14 14:46:07 [INFO]: Foreign key created: FK_tracking_history_package_id
+2024-11-14 14:46:07 [INFO]: Table created: supply
+2024-11-14 14:46:08 [INFO]: Table created: sale
+2024-11-14 14:46:09 [INFO]: Foreign key created: FK_supply_id
+2024-11-14 14:46:09 [INFO]: Foreign key created: FK_customer_id
+2024-11-14 14:46:11 [INFO]: Foreign key created: FK_employee_id
+2024-11-14 14:46:11 [INFO]: Table created: transaction
+2024-11-14 14:46:12 [INFO]: Foreign key created: FK_transaction_package_id
+2024-11-14 14:46:13 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-11-14 14:46:14 [INFO]: Foreign key created: FK_transaction_branch_id
+2024-11-14 14:46:14 [INFO]: Trigger created: mail_status_updated_trigger
+2024-11-14 14:46:15 [INFO]: Table created: employee_recent_logins
+2024-11-14 14:46:16 [INFO]: Foreign key created: FK_employee_recent_login_employee_id
+2024-11-14 14:46:17 [INFO]: Foreign key created: FK_employee_recent_login_branch_id
+2024-11-14 14:46:17 [INFO]: Trigger created: record_employee_login_activity
+2024-11-14 14:46:17 [INFO]: Column Added to customers Table: deleted_at
+2024-11-14 14:46:17 [INFO]: Trigger created: validate_delivery_date
+2024-11-14 14:46:17 [INFO]: Trigger created: check_inventory_capacity
+2024-11-14 14:46:18 [INFO]: Column Added to packages Table: is_deleted
+2024-11-14 14:46:18 [INFO]: Table created: notifications
+2024-11-14 14:46:19 [INFO]: Foreign key created: FK_notifications_customer_id
+2024-11-14 14:46:20 [INFO]: Foreign key created: FK_notifications_package_id
+2024-11-14 14:46:20 [INFO]: Event scheduler created: update_delayed_packages
+2024-11-14 14:46:21 [INFO]: Trigger created: notify_package_delay
+2024-11-14 14:46:21 [INFO]: Table created: need_employee_action
+2024-11-14 14:46:22 [INFO]: Foreign key created: FK_need_employee_action_employee_id
+2024-11-14 14:46:23 [INFO]: Foreign key created: FK_need_employee_action_package_id
+2024-11-14 14:46:23 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 15:37:21 [INFO]: Column Added to transactions table: transaction_status
+2024-11-14 16:39:09 [INFO]: Address table created
+2024-11-14 16:39:10 [INFO]: Table created: post_office
+2024-11-14 16:39:11 [INFO]: Foreign key created: FK_post_office_address_id
+2024-11-14 16:39:11 [INFO]: Table created: employees
+2024-11-14 16:39:13 [INFO]: Foreign key created: FK_employee_branch_id
+2024-11-14 16:39:14 [INFO]: Foreign key created: FK_employee_manager_id
+2024-11-14 16:39:14 [INFO]: Table created: customers
+2024-11-14 16:39:15 [INFO]: Foreign key created: FK_address_id
+2024-11-14 16:39:16 [INFO]: Table created: dependent
+2024-11-14 16:39:17 [INFO]: Foreign key created: FK_dependent_employee_id
+2024-11-14 16:39:17 [INFO]: Table created: Packages
+2024-11-14 16:39:18 [INFO]: Foreign key created: FK_package_customer_id
+2024-11-14 16:39:19 [INFO]: Foreign key created: FK_package_branch_id
+2024-11-14 16:39:20 [INFO]: Foreign key created: FK_package_sender_address_id
+2024-11-14 16:39:21 [INFO]: Foreign key created: FK_package_recipient_address_id
+2024-11-14 16:39:22 [INFO]: Table created: tracking_history
+2024-11-14 16:39:23 [INFO]: Foreign key created: FK_tracking_history_package_id
+2024-11-14 16:39:23 [INFO]: Table created: supply
+2024-11-14 16:39:23 [INFO]: Table created: sale
+2024-11-14 16:39:24 [INFO]: Foreign key created: FK_supply_id
+2024-11-14 16:39:25 [INFO]: Foreign key created: FK_customer_id
+2024-11-14 16:39:26 [INFO]: Foreign key created: FK_employee_id
+2024-11-14 16:39:27 [INFO]: Table created: transaction
+2024-11-14 16:39:28 [INFO]: Foreign key created: FK_transaction_package_id
+2024-11-14 16:39:29 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-11-14 16:39:30 [INFO]: Foreign key created: FK_transaction_branch_id
+2024-11-14 16:39:30 [INFO]: Trigger created: mail_status_updated_trigger
+2024-11-14 16:39:30 [INFO]: Table created: employee_recent_logins
+2024-11-14 16:39:31 [INFO]: Foreign key created: FK_employee_recent_login_employee_id
+2024-11-14 16:39:32 [INFO]: Foreign key created: FK_employee_recent_login_branch_id
+2024-11-14 16:39:32 [INFO]: Trigger created: record_employee_login_activity
+2024-11-14 16:39:33 [INFO]: Column Added to customers Table: deleted_at
+2024-11-14 16:39:33 [INFO]: Trigger created: validate_delivery_date
+2024-11-14 16:39:33 [INFO]: Trigger created: check_inventory_capacity
+2024-11-14 16:39:34 [INFO]: Column Added to packages Table: is_deleted
+2024-11-14 16:39:34 [INFO]: Table created: notifications
+2024-11-14 16:39:35 [INFO]: Foreign key created: FK_notifications_customer_id
+2024-11-14 16:39:36 [INFO]: Foreign key created: FK_notifications_package_id
+2024-11-14 16:39:36 [INFO]: Event scheduler created: update_delayed_packages
+2024-11-14 16:39:36 [INFO]: Trigger created: notify_package_delay
+2024-11-14 16:39:36 [INFO]: Table created: need_employee_action
+2024-11-14 16:39:37 [INFO]: Foreign key created: FK_need_employee_action_employee_id
+2024-11-14 16:39:38 [INFO]: Foreign key created: FK_need_employee_action_package_id
+2024-11-14 16:39:39 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 16:39:39 [INFO]: Column Added to transactions table: transaction_status
+2024-11-14 16:52:27 [INFO]: Address table created
+2024-11-14 16:52:28 [INFO]: Table created: post_office
+2024-11-14 16:52:29 [INFO]: Foreign key created: FK_post_office_address_id
+2024-11-14 16:52:29 [INFO]: Table created: employees
+2024-11-14 16:52:30 [INFO]: Foreign key created: FK_employee_branch_id
+2024-11-14 16:52:31 [INFO]: Foreign key created: FK_employee_manager_id
+2024-11-14 16:52:32 [INFO]: Table created: customers
+2024-11-14 16:52:33 [INFO]: Foreign key created: FK_address_id
+2024-11-14 16:52:34 [INFO]: Table created: dependent
+2024-11-14 16:52:35 [INFO]: Foreign key created: FK_dependent_employee_id
+2024-11-14 16:52:35 [INFO]: Table created: Packages
+2024-11-14 16:52:36 [INFO]: Foreign key created: FK_package_customer_id
+2024-11-14 16:52:37 [INFO]: Foreign key created: FK_package_branch_id
+2024-11-14 16:52:38 [INFO]: Foreign key created: FK_package_sender_address_id
+2024-11-14 16:52:39 [INFO]: Foreign key created: FK_package_recipient_address_id
+2024-11-14 16:52:40 [INFO]: Table created: tracking_history
+2024-11-14 16:52:41 [INFO]: Foreign key created: FK_tracking_history_package_id
+2024-11-14 16:52:41 [INFO]: Table created: supply
+2024-11-14 16:52:41 [INFO]: Table created: sale
+2024-11-14 16:52:42 [INFO]: Foreign key created: FK_supply_id
+2024-11-14 16:52:43 [INFO]: Foreign key created: FK_customer_id
+2024-11-14 16:52:45 [INFO]: Foreign key created: FK_employee_id
+2024-11-14 16:52:45 [INFO]: Table created: transaction
+2024-11-14 16:52:46 [INFO]: Foreign key created: FK_transaction_package_id
+2024-11-14 16:52:47 [INFO]: Foreign key created: FK_transaction_customer_id
+2024-11-14 16:52:48 [INFO]: Foreign key created: FK_transaction_branch_id
+2024-11-14 16:52:48 [INFO]: Trigger created: mail_status_updated_trigger
+2024-11-14 16:52:48 [INFO]: Table created: employee_recent_logins
+2024-11-14 16:52:49 [INFO]: Foreign key created: FK_employee_recent_login_employee_id
+2024-11-14 16:52:50 [INFO]: Foreign key created: FK_employee_recent_login_branch_id
+2024-11-14 16:52:50 [INFO]: Trigger created: record_employee_login_activity
+2024-11-14 16:52:51 [INFO]: Column Added to customers Table: deleted_at
+2024-11-14 16:52:51 [INFO]: Trigger created: validate_delivery_date
+2024-11-14 16:52:51 [INFO]: Trigger created: check_inventory_capacity
+2024-11-14 16:52:52 [INFO]: Column Added to packages Table: is_deleted
+2024-11-14 16:52:52 [INFO]: Table created: notifications
+2024-11-14 16:52:53 [INFO]: Foreign key created: FK_notifications_customer_id
+2024-11-14 16:52:54 [INFO]: Foreign key created: FK_notifications_package_id
+2024-11-14 16:52:54 [INFO]: Event scheduler created: update_delayed_packages
+2024-11-14 16:52:54 [INFO]: Trigger created: notify_package_delay
+2024-11-14 16:52:54 [INFO]: Table created: need_employee_action
+2024-11-14 16:52:55 [INFO]: Foreign key created: FK_need_employee_action_employee_id
+2024-11-14 16:52:56 [INFO]: Foreign key created: FK_need_employee_action_package_id
+2024-11-14 16:52:56 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 16:52:57 [INFO]: Column Added to transactions table: transaction_status
+2024-11-14 16:54:40 [INFO]: Column dropped from transaction Table: transaction_status
+2024-11-14 16:54:57 [INFO]: Trigger dropped: notify_refund_on_cancel
+2024-11-14 16:56:21 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 16:56:21 [INFO]: Column Added to transactions table: transaction_status
+2024-11-14 17:01:48 [INFO]: Column dropped from transaction Table: transaction_status
+2024-11-14 17:02:07 [INFO]: Trigger dropped: notify_refund_on_cancel
+2024-11-14 17:02:24 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 17:02:24 [INFO]: Column Added to transactions table: transaction_status
+2024-11-14 17:11:04 [INFO]: Column dropped from transaction Table: transaction_status
+2024-11-14 17:11:21 [INFO]: Trigger dropped: notify_refund_on_cancel
+2024-11-14 17:12:59 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 17:12:59 [INFO]: Column Added to transactions table: transaction_status
+2024-11-14 17:21:05 [INFO]: Column dropped from transaction Table: transaction_status
+2024-11-14 17:21:22 [INFO]: Trigger dropped: notify_refund_on_cancel
+2024-11-14 17:26:39 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 17:26:40 [INFO]: Column Added to transactions table: transaction_status
+2024-11-14 17:30:31 [INFO]: Column dropped from transaction Table: transaction_status
+2024-11-14 17:30:51 [INFO]: Trigger dropped: notify_refund_on_cancel
+2024-11-14 17:31:07 [INFO]: Trigger created: notify_refund_on_cancel
+2024-11-14 17:31:07 [INFO]: Column Added to transactions table: transaction_status

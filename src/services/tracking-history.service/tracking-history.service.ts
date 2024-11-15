@@ -1,9 +1,9 @@
-import { In, Repository } from 'typeorm'
+import { Repository } from 'typeorm'
 import {CreateTrackingHistoryDTO} from '../../dtos'
-import { PostOffice, TrackingHistory, Address, Customers, Packages } from '../../entities'
+import { PostOffice, TrackingHistory, Customers, Packages } from '../../entities'
 import { AppDataSource } from '../../data-source'
 import { NotFoundError } from '../../types/http-error.type'
-import { date } from 'joi'
+import { format } from 'date-fns'
 
 
 
@@ -46,7 +46,7 @@ class TrackingHistoryService {
             throw new NotFoundError("Customer is not existed")
         }
 
-        const packages  = await this.packageRepository.find({where: {customerId}, relations: ['senderAddress', 'recipientAddress', 'trackingHistories']});
+        const packages  = await this.packageRepository.find({where: {customerId}, relations: ['senderAddress', 'recipientAddress', 'trackingHistories', 'transactions']});
         if (!packages ) {
             throw new NotFoundError("You don't have any package infile")
         }
@@ -61,7 +61,7 @@ class TrackingHistoryService {
                 shippingDate: pkg.shippingDate,
                 deliveryDate: pkg.deliveryDate,
                 createAt: pkg.createdAt,
-                updatedAt: pkg.updatedAt,
+                updatedAt: format(new Date(pkg.updatedAt), 'yyyy-MM-dd'),
             },
             senderAddress: {
                 street: pkg.senderAddress.street,
@@ -77,10 +77,16 @@ class TrackingHistoryService {
             },
             trackingHistory: pkg.trackingHistories.map(history => ({
                 status: history.status,
-                date: history.updateDate,
+                date: format(new Date(history.updateDate), 'yyyy-MM-dd') ,
                 location: history.location,
+            })),
+            transactionStatus: pkg.transactions.map(transaction => ({
+                transactionId: transaction.transactionId,
+                date: format(new Date(transaction.transactionDate), 'yyyy-MM-dd'),
+                amount: transaction.amount,
+                status: transaction.transactionStatus
             }))
-        }))
+        }));
 
 
     }

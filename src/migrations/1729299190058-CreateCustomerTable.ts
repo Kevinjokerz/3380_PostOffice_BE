@@ -32,7 +32,8 @@ export class CreateCustomerTable1729299190058 implements MigrationInterface {
                         name: "email",
                         type: "varchar",
                         length: "50",
-                        isNullable: false
+                        isNullable: false,
+                        isUnique: true,
                     },
                     {
                         name:"phone_number",

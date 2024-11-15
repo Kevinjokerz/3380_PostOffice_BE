@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany, ManyToOne } from "typeorm";
-import {Address, Customers, PostOffice, TrackingHistory, Transaction} from './index'
+import {Address, Customers, Notifications, PostOffice, TrackingHistory, Transaction} from './index'
 
 @Entity('packages')
 export class Packages {
@@ -61,10 +61,16 @@ export class Packages {
 
     @Column({name: 'updated_at', type: 'timestamp', default: ()=> 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP'})
     updatedAt: Date;
+
+    @Column({name: 'is_deleted', type: 'timestamp', nullable: true})
+    isDeleted: Date;
     
     @OneToMany(() => TrackingHistory, (trackingHistories) => trackingHistories.pkg)
     trackingHistories: TrackingHistory[];
 
     @OneToMany(() => Transaction, (transactions) => transactions.pkg)
     transactions: Transaction[];
+
+    @OneToMany(() => Notifications, (notifications) => notifications.pkg)
+    notifications: Notifications[];
 }

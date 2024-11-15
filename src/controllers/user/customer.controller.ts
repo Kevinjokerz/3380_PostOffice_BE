@@ -1,5 +1,5 @@
 import {Response} from 'express';
-import {customersService, trackingHistoryService} from '../../services'
+import {customersService, trackingHistoryService, transactionService, customerNotificationService} from '../../services'
 import {RequestWithCustomerInfo, CustomerInfo} from '../../types/custom-request.type'
 
 
@@ -20,6 +20,26 @@ class CustomerController {
         const { customerId } = req.customerInfo as CustomerInfo;
         const trackinghistoryWithPackageInfo = await trackingHistoryService.viewTrackingHistoryWithCustomerId(customerId);
         res.send(trackinghistoryWithPackageInfo)
+    }
+
+    async cancelPackageByCustomerIdAndPackageId(req: RequestWithCustomerInfo, res: Response) {
+        const { customerId } = req.customerInfo as CustomerInfo;
+        const { packageId } = req.body;
+        const packageToCancel = await customersService.cancelPackageByCustomerIdAndPackageId(customerId, packageId);
+        res.send(packageToCancel);
+    }
+
+    async makePayment (req: RequestWithCustomerInfo, res: Response) {
+        const { customerId } = req.customerInfo as CustomerInfo;
+        const { packageId } = req.body;
+        const packagePayment = await transactionService.makePayment(customerId, packageId);
+        res.send(packagePayment);
+    }
+
+    async getNotificationByCustomerId (req: RequestWithCustomerInfo, res: Response) {
+        const { customerId } = req.customerInfo as CustomerInfo;
+        const notifications = await customerNotificationService.getNotificationByCutomerId(customerId);
+        res.send(notifications);
     }
 }
 

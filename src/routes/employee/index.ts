@@ -15,6 +15,7 @@ employeeRouter.get('/package-and-tracking-report', asyncHandler(managerAuthentic
 employeeRouter.get('/employees-and-logins-report', asyncHandler(managerAuthenticationMiddleware), asyncHandler(dataReportController.getEmployeeInfoAndRecentLoginsByBranchId));
 employeeRouter.post('/add-dependent', asyncHandler(employeeAuthenticationMiddleware), asyncHandler(employeeController.addDependent));
 employeeRouter.get('/employee-and-dependents-report', asyncHandler(managerAuthenticationMiddleware), asyncHandler(dataReportController.getEmployeeInfoAndDependentsByBranchId))
+employeeRouter.get('/need-employee-action', asyncHandler(employeeAuthenticationMiddleware), asyncHandler(employeeController.getNeededActions))
 
 
 export default employeeRouter;

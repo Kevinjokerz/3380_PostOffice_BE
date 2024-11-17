@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {employeesServices, trackingHistoryService, transactionService} from '../../services'
+import {employeesServices, trackingHistoryService, transactionService, needEmployeeActionsService} from '../../services'
 import {RequestWithEmployeeInfo, EmployeeInfo} from '../../types/custom-request.type'
 
 
@@ -37,6 +37,12 @@ class EmployeeController {
         const { payload } = req.body;
         const newDependent = await employeesServices.addDependent(employeeId, payload);
         res.send(newDependent)
+    }
+
+    async getNeededActions (req: RequestWithEmployeeInfo, res: Response) {
+        const { employeeId } = req.employeeInfo as EmployeeInfo;
+        const neededActions = await needEmployeeActionsService.getNeededActionByEmployeeId(employeeId);
+        res.send(neededActions);
     }
 }
 

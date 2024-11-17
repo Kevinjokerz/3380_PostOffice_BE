@@ -83,6 +83,11 @@ async editCustomerProfile(customerId: number, dto: UpdateCustomerDTO) {
 }
 
 async cancelPackageByCustomerIdAndPackageId (customerId: number, packageId: number) {
+
+    if (!customerId || !packageId) {
+        throw new BadRequestError('Please choose a package');
+    }
+
     const packageToCancel = await this.packageRepository.findOne({where: {packageId, customerId}})
 
     if(!packageToCancel) {

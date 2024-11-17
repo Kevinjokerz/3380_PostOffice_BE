@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, OneToMany, ManyToOne } from "typeorm";
-import {Address, Customers, Notifications, PostOffice, TrackingHistory, Transaction} from './index'
+import {Address, Customers, NeedEmployeeAction, Notifications, PostOffice, TrackingHistory, Transaction} from './index'
 
 @Entity('packages')
 export class Packages {
@@ -73,4 +73,7 @@ export class Packages {
 
     @OneToMany(() => Notifications, (notifications) => notifications.pkg)
     notifications: Notifications[];
+
+    @OneToMany(() => NeedEmployeeAction, (needEmployeeActions) => needEmployeeActions.package)
+    needEmployeeActions!: NeedEmployeeAction[];
 }

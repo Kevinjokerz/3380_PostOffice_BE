@@ -44,6 +44,12 @@ class EmployeeController {
         const neededActions = await needEmployeeActionsService.getNeededActionByEmployeeId(employeeId);
         res.send(neededActions);
     }
+
+    async createNewBranch (req: Request, res: Response) {
+        const { payload } = req.body;
+        const newBranch = await employeesServices.createNewBranch(payload);
+        res.send(newBranch)
+    }
 }
 
 const employeeController = new EmployeeController();

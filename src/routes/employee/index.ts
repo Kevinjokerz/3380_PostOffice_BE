@@ -16,6 +16,10 @@ employeeRouter.get('/employees-and-logins-report', asyncHandler(managerAuthentic
 employeeRouter.post('/add-dependent', asyncHandler(employeeAuthenticationMiddleware), asyncHandler(employeeController.addDependent));
 employeeRouter.get('/employee-and-dependents-report', asyncHandler(managerAuthenticationMiddleware), asyncHandler(dataReportController.getEmployeeInfoAndDependentsByBranchId))
 employeeRouter.get('/need-employee-action', asyncHandler(employeeAuthenticationMiddleware), asyncHandler(employeeController.getNeededActions))
+employeeRouter.post('/create-post-office',
+    asyncHandler(managerAuthenticationMiddleware),
+    asyncHandler(employeeController.createNewBranch)
+)
 
 
 export default employeeRouter;

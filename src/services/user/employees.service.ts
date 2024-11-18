@@ -3,7 +3,7 @@ import { BadRequestError, ConflictError, NotFoundError } from '../../types/http-
 import { CatchAsyncDecorator } from '../../decorators/catch-async.decorator'
 import { Repository } from 'typeorm';
 import { PostOffice, Employees, Packages, Customers, Address, Dependent } from "../../entities";
-import { UpdateEmployeeDTO, createPackageDTO, updatePackageDTO, CreateDependentDto } from '../../dtos';
+import { UpdateEmployeeDTO, createPackageDTO, updatePackageDTO, CreateDependentDto, CreateBranchDTO } from '../../dtos';
 import { error } from 'console';
 
 
@@ -217,6 +217,55 @@ async addDependent (employeeId: number, dto: CreateDependentDto) {
 
     await this.dependentRepository.save(newDependent);
     return newDependent;
+}
+
+async createNewBranch (dto: CreateBranchDTO) {
+    const existedBranch = await this.postOfficeRepository.findOne({where: {
+        branchName: dto.branchName, 
+        email: dto.email,
+        phoneNumber: dto.phoneNumber,
+    }})
+    if (existedBranch) {
+        throw new ConflictError('Branch already exists')
+    }
+
+    const existedAddress = await this.addressRepository.findOne({where: {
+        street: dto.street,
+        city: dto.city,
+        state: dto.state,
+        zipCode: dto.city    
+    }})
+    if(existedAddress) {
+        const newBranch = await this.postOfficeRepository.create({
+            branchName: dto.branchName,
+            email: dto.email,
+            phoneNumber: dto.phoneNumber,
+            address: existedAddress,
+        })
+
+        await this.postOfficeRepository.save(newBranch);
+        return newBranch
+    }
+
+    const newAddress = await this.addressRepository.create({
+        street: dto.street,
+        city: dto.city,
+        state: dto.city,
+        zipCode: dto.zipcode,
+    })
+
+
+    await this.addressRepository.save(newAddress);
+
+    const newBranch = await this.postOfficeRepository.create({
+        branchName: dto.branchName,
+        email: dto.email,
+        phoneNumber: dto.phoneNumber,
+        address: newAddress,
+    })
+
+    await this.postOfficeRepository.save(newBranch);
+    return newBranch;
 }
 
 }

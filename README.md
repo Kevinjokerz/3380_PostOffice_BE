@@ -40,9 +40,11 @@ To start the application in development mode:
 yarn start
 ```
 By default, the application will run on http://localhost:3000.
+
 2. Access the API
 Once the application is running, you can access the API at:
 - http://localhost:3000
+
 # Project Structure
 ```
 .
